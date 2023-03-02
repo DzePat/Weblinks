@@ -56,13 +56,14 @@ namespace WebLinks
                 else if (command == "add")
                 {
                     //addLink();
-
+<<<<<<< HEAD
                 }
 
                 else if (command == "save") 
                 { 
                     saveLink();
-
+=======
+>>>>>>> 69b681433c533df2b840fe91bd13e3ac6f1b8c6e
                 }
                 else
                 {
@@ -72,7 +73,7 @@ namespace WebLinks
             } while (command != "quit");
         }
 
-
+<<<<<<< HEAD
 
 
         public void loadFilefromFolder() { } //laddar Weblink.txt fil, läser in rad för rad till array
@@ -81,6 +82,7 @@ namespace WebLinks
         public void openLink () { } //öppnar länk från arraylistan
         public void saveLink () { } //spara ny länk till filen
      
+=======
         public void listLinkCollection(string fileName)
         {
             if (File.Exists(fileName))
@@ -106,10 +108,11 @@ namespace WebLinks
             }
         }
 
-        public void loadFilefromFolder() { }
+        public void openFilefromFolder() { }
         public void addLink() { }
         public void openLink() { }
 
+>>>>>>> 69b681433c533df2b840fe91bd13e3ac6f1b8c6e
 
         public void listLinkCollection(string fileName)
         {
