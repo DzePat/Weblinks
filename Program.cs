@@ -1,4 +1,5 @@
 ﻿using static WebLinks.Program;
+using System.Diagnostics;
 
 namespace WebLinks
 {
@@ -40,7 +41,7 @@ namespace WebLinks
                 }
                 else if (command == "load file")
                 {
-                    Console.Write("ange filnamn: ");
+                    Console.Write("ange filnamn(exempel: Weblink.txt): ");
                     string filename = Console.ReadLine();
                     loadFilefromFolder(filename);
                 }
@@ -68,7 +69,6 @@ namespace WebLinks
         public static void loadFilefromFolder(string fileName)
 
         {
-            Console.WriteLine("till exempel: Weblink.txt");
             string workingDirectory = Environment.CurrentDirectory;
             string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             Console.WriteLine(strExeFilePath +@"\"+ fileName);
@@ -124,6 +124,7 @@ namespace WebLinks
         }
         public static void openLink() {
             Console.WriteLine("Which link do you want to open?");
+            Console.WriteLine(links[0].Name);
             for (int i = 0; i < links.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {links[i].Name}");
@@ -135,7 +136,12 @@ namespace WebLinks
             {
                 Link link = links[index];
                 Console.WriteLine($"Opening {link.Name} ({link.Description})...");
-                System.Diagnostics.Process.Start(link.Url);
+                var ps = new ProcessStartInfo(link.Url)
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                Process.Start(ps);
             }
             else
             {
