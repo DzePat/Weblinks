@@ -2,7 +2,21 @@
 {
     internal class Program
     {
+        static List<Link> links = new List<Link>(); // lista för att lagra alla länkar
+        // klass som representerar en länk
+        public class Link
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public string Url { get; set; }
 
+            public Link(string name, string description, string url)
+            {
+                Name = name;
+                Description = description;
+                Url = url;
+            }
+        }
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -21,19 +35,19 @@
                 }
                 else if (command == "list")
                 {
-                    listLinkCollection();
+                    //  listLinkCollection();
                 }
                 else if (command == "open file")
                 {
-                    openFilefromFolder();
+                    //openFilefromFolder();
                 }
                 else if (command == "open")
                 {
-                    openLink();
+                    // openLink();
                 }
                 else if (command == "add")
                 {
-                    addLink();
+                    //addLink();
                 }
                 else
                 {
@@ -43,11 +57,35 @@
             } while (command != "quit");
         }
 
-        public void listLinkCollection() { }
+        public void listLinkCollection(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string[] lines = File.ReadAllLines(fileName);
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split('|');
+                    if (parts.Length == 3)
+                    {
+                        string name = parts[0];
+                        string description = parts[1];
+                        string url = parts[2];
+                        Link link = new Link(name, description, url);
+                        links.Add(link);
+                    }
+                }
+                Console.WriteLine($"Loaded {links.Count} links from file.");
+            }
+            else
+            {
+                Console.WriteLine("Linkfile does not exist. create a new file by adding a link.");
+            }
+        }
+
         public void openFilefromFolder() { }
-        public void addLink () { }
-        public void openLink () { }
-     
+        public void addLink() { }
+        public void openLink() { }
+
 
 
         private static void NotYetImplemented(string command)
