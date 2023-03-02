@@ -29,6 +29,7 @@
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
+                    Console.WriteLine("Hej");
                 }
             } while (command != "quit");
         }
