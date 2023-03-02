@@ -64,7 +64,7 @@
             } while (command != "quit");
         }
 
-        public void listLinkCollection(string fileName)
+        public void loadFilefromFolder(string fileName)
 
         {
             if (File.Exists(fileName))
@@ -89,6 +89,8 @@
                 Console.WriteLine("Linkfile does not exist. create a new file by adding a link.");
             }
         }
+
+        public void listLinkCollection() { }
 
         public void openFilefromFolder() { }
         public void addLink()
