@@ -48,19 +48,13 @@ namespace WebLinks
                 {
                     listLinkCollection();
                 }
-
-                else if (command == "open file")
-                {
-                    //openFilefromFolder();
-                }
-
                 else if (command == "open")
                 {
-                    // openLink();
+                    openLink();
                 }
                 else if (command == "add")
                 {
-                    //addLink();
+                    addLink();
 
                 }
                 else
@@ -74,6 +68,7 @@ namespace WebLinks
         public static void loadFilefromFolder(string fileName)
 
         {
+            Console.WriteLine("till exempel: Weblink.txt");
             string workingDirectory = Environment.CurrentDirectory;
             string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             Console.WriteLine(strExeFilePath +@"\"+ fileName);
@@ -111,8 +106,7 @@ namespace WebLinks
             }
         }
 
-        public void openFilefromFolder() { }
-        public void addLink()
+        public static void addLink()
         {
             Console.Write("Link name: ");
             string name = Console.ReadLine();
@@ -128,7 +122,27 @@ namespace WebLinks
 
             Console.WriteLine($"Added {link.Name} ({link.Description}).");
         }
-        public void openLink() { }
+        public static void openLink() {
+            Console.WriteLine("Which link do you want to open?");
+            for (int i = 0; i < links.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {links[i].Name}");
+            }
+            Console.Write("Ange länkens nummer: ");
+            int index = int.Parse(Console.ReadLine()) - 1;
+
+            if (index >= 0 && index < links.Count)
+            {
+                Link link = links[index];
+                Console.WriteLine($"Opening {link.Name} ({link.Description})...");
+                System.Diagnostics.Process.Start(link.Url);
+            }
+            else
+            {
+                Console.WriteLine("link error!!!");
+            }
+
+        }
 
 
 
@@ -150,7 +164,7 @@ namespace WebLinks
         {
             string[] hstr = {
                 "help  - display this help",
-                "load  - load all links from a file",
+                "load file  - load all links from a file",
                 "open  - open a specific link",
                 "quit  - quit the program"
             };
