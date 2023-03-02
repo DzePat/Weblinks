@@ -19,21 +19,36 @@
                 {
                     WriteTheHelp();
                 }
-                else if (command == "load")
+                else if (command == "list")
                 {
-                    NotYetImplemented(command);
+                    listLinkCollection();
+                }
+                else if (command == "open file")
+                {
+                    openFilefromFolder();
                 }
                 else if (command == "open")
                 {
-                    NotYetImplemented(command);
+                    openLink();
+                }
+                else if (command == "add")
+                {
+                    addLink();
                 }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
-                    
+
                 }
             } while (command != "quit");
         }
+
+        public void listLinkCollection() { }
+        public void openFilefromFolder() { }
+        public void addLink () { }
+        public void openLink () { }
+     
+
 
         private static void NotYetImplemented(string command)
         {
