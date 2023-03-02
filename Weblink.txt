@@ -1,2 +1,3 @@
 Google|Google search engine|www.google.com
 Youtube|youtube videos|www.youtube.com
+Moodle molk|Länk till moodle|moodle.molk.se
