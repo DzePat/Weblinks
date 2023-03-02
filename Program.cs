@@ -111,7 +111,7 @@
 
 
 
-        public void listLinkCollection(string fileName)
+        public static void listLinkCollection(string fileName)
         {
             if (File.Exists(fileName))
             {
