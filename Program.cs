@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace WebLinks
+﻿namespace WebLinks
 {
     internal class Program
     {
@@ -41,7 +39,7 @@ namespace WebLinks
                 }
                 else if (command == "list")
                 {
-                    //  listLinkCollection();
+                    listLinkCollection("Weblink.txt");
                 }
 
                 else if (command == "open file")
@@ -58,12 +56,6 @@ namespace WebLinks
                     //addLink();
 
                 }
-
-                else if (command == "save") 
-                { 
-                    saveLink();
-
-                }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
@@ -72,16 +64,8 @@ namespace WebLinks
             } while (command != "quit");
         }
 
-
-
-        public void loadFilefromFolder() { } //laddar Weblink.txt fil, läser in rad för rad till array
-        public void listLinkCollection() { } //skriver ut alla länkar i array
-        public void addLink () { } //lägga till webblänk inifrån program
-        public void openLink () { } //öppnar länk från arraylistan
-        public void saveLink () { } //spara ny länk till filen
-     
-
         public void listLinkCollection(string fileName)
+
         {
             if (File.Exists(fileName))
             {
@@ -107,8 +91,28 @@ namespace WebLinks
         }
 
         public void openFilefromFolder() { }
-        public void addLink() { }
+        public void addLink()
+        {
+            Console.Write("Link name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Link description: ");
+            string description = Console.ReadLine();
+
+            Console.Write("Link URL: ");
+            string url = Console.ReadLine();
+
+            Link link = new Link(name, description, url);
+            links.Add(link);
+
+            Console.WriteLine($"Added {link.Name} ({link.Description}).");
+        }
         public void openLink() { }
+
+
+
+
+
         private static void NotYetImplemented(string command)
         {
             Console.WriteLine($"Sorry: '{command}' is not yet implemented");
