@@ -1,4 +1,6 @@
-﻿namespace WebLinks
+﻿using System.Xml.Linq;
+
+namespace WebLinks
 {
     internal class Program
     {
@@ -19,14 +21,16 @@
                 {
                     WriteTheHelp();
                 }
+                else if (command == "load file")
+                {
+                    loadFilefromFolder();
+                }
                 else if (command == "list")
                 {
                     listLinkCollection();
                 }
-                else if (command == "open file")
-                {
-                    openFilefromFolder();
-                }
+
+
                 else if (command == "open")
                 {
                     openLink();
@@ -34,6 +38,11 @@
                 else if (command == "add")
                 {
                     addLink();
+                }
+
+                else if (command == "save") 
+                { 
+                    saveLink();
                 }
                 else
                 {
@@ -43,10 +52,12 @@
             } while (command != "quit");
         }
 
-        public void listLinkCollection() { }
-        public void openFilefromFolder() { }
-        public void addLink () { }
-        public void openLink () { }
+
+        public void loadFilefromFolder() { } //laddar Weblink.txt fil, läser in rad för rad till array
+        public void listLinkCollection() { } //skriver ut alla länkar i array
+        public void addLink () { } //lägga till webblänk inifrån program
+        public void openLink () { } //öppnar länk från arraylistan
+        public void saveLink () { } //spara ny länk till filen
      
 
 
