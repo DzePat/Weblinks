@@ -33,14 +33,20 @@
                 {
                     WriteTheHelp();
                 }
+                else if (command == "load file")
+                {
+                    loadFilefromFolder();
+                }
                 else if (command == "list")
                 {
                     listLinkCollection("Weblink.txt");
                 }
+
                 else if (command == "open file")
                 {
                     //openFilefromFolder();
                 }
+
                 else if (command == "open")
                 {
                     // openLink();
@@ -48,6 +54,13 @@
                 else if (command == "add")
                 {
                     //addLink();
+
+                }
+
+                else if (command == "save")
+                {
+                    saveLink();
+
                 }
                 else
                 {
@@ -57,7 +70,20 @@
             } while (command != "quit");
         }
 
+
         public static void listLinkCollection(string fileName)
+
+
+
+        public void loadFilefromFolder() { } //laddar Weblink.txt fil, läser in rad för rad till array
+        public void listLinkCollection() { } //skriver ut alla länkar i array
+        public void addLink() { } //lägga till webblänk inifrån program
+        public void openLink() { } //öppnar länk från arraylistan
+        public void saveLink() { } //spara ny länk till filen
+
+
+        public void listLinkCollection(string fileName)
+
         {
             if (File.Exists(fileName))
             {
@@ -100,6 +126,38 @@
             Console.WriteLine($"Added {link.Name} ({link.Description}).");
         }
         public void openLink() { }
+
+
+
+        public void listLinkCollection(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string[] lines = File.ReadAllLines(fileName);
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split('|');
+                    if (parts.Length == 3)
+                    {
+                        string name = parts[0];
+                        string description = parts[1];
+                        string url = parts[2];
+                        Link link = new Link(name, description, url);
+                        links.Add(link);
+                    }
+                }
+                Console.WriteLine($"Loaded {links.Count} links from file.");
+            }
+            else
+            {
+                Console.WriteLine("Linkfile does not exist. create a new file by adding a link.");
+            }
+        }
+
+        public void openFilefromFolder() { }
+        public void addLink() { }
+        public void openLink() { }
+
 
 
 
