@@ -110,8 +110,6 @@ namespace WebLinks
                 Console.WriteLine($"{a.Name} ({a.Description}): {a.Url}");
             }
         }
-
-        public void openFilefromFolder() { }
         public void addLink()
         {
             Console.Write("Link name: ");
