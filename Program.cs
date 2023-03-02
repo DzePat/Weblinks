@@ -113,13 +113,6 @@
 
 
 
-        public void openFilefromFolder() { }
-        public void addLink() { }
-        public void openLink() { }
-
-
-
-
         private static void NotYetImplemented(string command)
         {
             Console.WriteLine($"Sorry: '{command}' is not yet implemented");
