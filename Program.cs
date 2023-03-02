@@ -65,7 +65,7 @@ namespace WebLinks
                 }
             } while (command != "quit");
         }
-
+        //loading a file into system to be processed
         public static void loadFilefromFolder(string fileName)
 
         {
@@ -97,7 +97,7 @@ namespace WebLinks
         }
 
 
-
+        //prints all the websites in the selected folder
         public static void listLinkCollection()
         {
             foreach(Link a in links)
