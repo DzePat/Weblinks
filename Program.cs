@@ -35,7 +35,7 @@
                 }
                 else if (command == "list")
                 {
-                    //  listLinkCollection();
+                    listLinkCollection("Weblink.txt");
                 }
                 else if (command == "open file")
                 {
@@ -57,7 +57,7 @@
             } while (command != "quit");
         }
 
-        public void listLinkCollection(string fileName)
+        public static void listLinkCollection(string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -83,7 +83,22 @@
         }
 
         public void openFilefromFolder() { }
-        public void addLink() { }
+        public void addLink()
+        {
+            Console.Write("Link name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Link description: ");
+            string description = Console.ReadLine();
+
+            Console.Write("Link URL: ");
+            string url = Console.ReadLine();
+
+            Link link = new Link(name, description, url);
+            links.Add(link);
+
+            Console.WriteLine($"Added {link.Name} ({link.Description}).");
+        }
         public void openLink() { }
 
 
