@@ -109,41 +109,6 @@ namespace WebLinks
         public void openFilefromFolder() { }
         public void addLink() { }
         public void openLink() { }
-
-
-
-        public void listLinkCollection(string fileName)
-        {
-            if (File.Exists(fileName))
-            {
-                string[] lines = File.ReadAllLines(fileName);
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split('|');
-                    if (parts.Length == 3)
-                    {
-                        string name = parts[0];
-                        string description = parts[1];
-                        string url = parts[2];
-                        Link link = new Link(name, description, url);
-                        links.Add(link);
-                    }
-                }
-                Console.WriteLine($"Loaded {links.Count} links from file.");
-            }
-            else
-            {
-                Console.WriteLine("Linkfile does not exist. create a new file by adding a link.");
-            }
-        }
-
-        public void openFilefromFolder() { }
-        public void addLink() { }
-        public void openLink() { }
-
-
-
-
         private static void NotYetImplemented(string command)
         {
             Console.WriteLine($"Sorry: '{command}' is not yet implemented");
