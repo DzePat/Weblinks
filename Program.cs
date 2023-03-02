@@ -1,4 +1,6 @@
-﻿namespace WebLinks
+﻿using System.Xml.Linq;
+
+namespace WebLinks
 {
     internal class Program
     {
@@ -33,14 +35,20 @@
                 {
                     WriteTheHelp();
                 }
+                else if (command == "load file")
+                {
+                    loadFilefromFolder();
+                }
                 else if (command == "list")
                 {
                     //  listLinkCollection();
                 }
+
                 else if (command == "open file")
                 {
                     //openFilefromFolder();
                 }
+
                 else if (command == "open")
                 {
                     // openLink();
@@ -48,6 +56,14 @@
                 else if (command == "add")
                 {
                     //addLink();
+<<<<<<< HEAD
+                }
+
+                else if (command == "save") 
+                { 
+                    saveLink();
+=======
+>>>>>>> 69b681433c533df2b840fe91bd13e3ac6f1b8c6e
                 }
                 else
                 {
@@ -56,6 +72,47 @@
                 }
             } while (command != "quit");
         }
+
+<<<<<<< HEAD
+
+
+        public void loadFilefromFolder() { } //laddar Weblink.txt fil, läser in rad för rad till array
+        public void listLinkCollection() { } //skriver ut alla länkar i array
+        public void addLink () { } //lägga till webblänk inifrån program
+        public void openLink () { } //öppnar länk från arraylistan
+        public void saveLink () { } //spara ny länk till filen
+     
+=======
+        public void listLinkCollection(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string[] lines = File.ReadAllLines(fileName);
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split('|');
+                    if (parts.Length == 3)
+                    {
+                        string name = parts[0];
+                        string description = parts[1];
+                        string url = parts[2];
+                        Link link = new Link(name, description, url);
+                        links.Add(link);
+                    }
+                }
+                Console.WriteLine($"Loaded {links.Count} links from file.");
+            }
+            else
+            {
+                Console.WriteLine("Linkfile does not exist. create a new file by adding a link.");
+            }
+        }
+
+        public void openFilefromFolder() { }
+        public void addLink() { }
+        public void openLink() { }
+
+>>>>>>> 69b681433c533df2b840fe91bd13e3ac6f1b8c6e
 
         public void listLinkCollection(string fileName)
         {
@@ -85,6 +142,7 @@
         public void openFilefromFolder() { }
         public void addLink() { }
         public void openLink() { }
+
 
 
 
