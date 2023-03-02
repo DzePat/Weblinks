@@ -150,7 +150,7 @@ namespace WebLinks
         {
             string[] hstr = {
                 "help  - display this help",
-                "load  - load all links from a file",
+                "load file  - load all links from a file",
                 "open  - open a specific link",
                 "quit  - quit the program"
             };
