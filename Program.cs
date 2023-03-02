@@ -1,4 +1,6 @@
-﻿namespace WebLinks
+﻿using static WebLinks.Program;
+
+namespace WebLinks
 {
     internal class Program
     {
@@ -90,7 +92,13 @@
             }
         }
 
-        public void listLinkCollection() { }
+        public void listLinkCollection()
+        {
+            foreach(Link a in links)
+            {
+                Console.WriteLine($"{a.Name} ({a.Description}): {a.Url}");
+            }
+        }
 
         public void openFilefromFolder() { }
         public void addLink()
