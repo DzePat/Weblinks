@@ -21,6 +21,9 @@ namespace WebLinks
         }
         static void Main(string[] args)
         {
+            
+            
+
             PrintWelcome();
             string command;
             do
@@ -37,11 +40,13 @@ namespace WebLinks
                 }
                 else if (command == "load file")
                 {
-                    loadFilefromFolder();
+                    Console.Write("ange filnamn: ");
+                    string filename = Console.ReadLine();
+                    loadFilefromFolder(filename);
                 }
                 else if (command == "list")
                 {
-                    listLinkCollection("Weblink.txt");
+                    listLinkCollection();
                 }
 
                 else if (command == "open file")
@@ -66,12 +71,16 @@ namespace WebLinks
             } while (command != "quit");
         }
 
-        public void loadFilefromFolder(string fileName)
+        public static void loadFilefromFolder(string fileName)
 
         {
-            if (File.Exists(fileName))
+            string workingDirectory = Environment.CurrentDirectory;
+            string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            Console.WriteLine(strExeFilePath +@"\"+ fileName);
+            string main = strExeFilePath + @"\" + fileName;
+            if (File.Exists(main))
             {
-                string[] lines = File.ReadAllLines(fileName);
+                string[] lines = File.ReadAllLines(main);
                 foreach (string line in lines)
                 {
                     string[] parts = line.Split('|');
@@ -92,7 +101,9 @@ namespace WebLinks
             }
         }
 
-        public void listLinkCollection()
+
+
+        public static void listLinkCollection()
         {
             foreach(Link a in links)
             {
