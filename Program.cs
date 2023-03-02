@@ -56,12 +56,6 @@
                     //addLink();
 
                 }
-
-                else if (command == "save")
-                {
-                    saveLink();
-
-                }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
@@ -69,18 +63,6 @@
                 }
             } while (command != "quit");
         }
-
-
-
-
-
-
-        public void loadFilefromFolder() { } //laddar Weblink.txt fil, läser in rad för rad till array
-        public void listLinkCollection() { } //skriver ut alla länkar i array
-        public void addLink() { } //lägga till webblänk inifrån program
-        public void openLink() { } //öppnar länk från arraylistan
-        public void saveLink() { } //spara ny länk till filen
-
 
         public void listLinkCollection(string fileName)
 
@@ -157,7 +139,6 @@
         public void openFilefromFolder() { }
         public void addLink() { }
         public void openLink() { }
-
 
 
 
