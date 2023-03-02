@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using ANSIConsole;
+using System.Diagnostics;
+
+
 
 namespace WebLinks
 {
@@ -66,11 +69,12 @@ namespace WebLinks
                 }
                 else
                 {
-                    Console.WriteLine($"Unknown command '{command}'");
+                    Console.WriteLine($"Unknown command '{command}'".Color(ConsoleColor.Red));
 
                 }
             } while (command != "quit");
         }
+        //gets a path to the existing textfile
         public static string path1(string fileName)
         {
             string workingDirectory = Environment.CurrentDirectory;
@@ -78,7 +82,7 @@ namespace WebLinks
             string main = strExeFilePath + @"\" + fileName;
             return main;
         }
-        //loading a file into system to be processed
+        //gets a file from the path and reads it into a string line by line
         public static void loadFilefromFolder(string fileName)
 
         {//nolla array
@@ -103,20 +107,21 @@ namespace WebLinks
             }
             else
             {
-                Console.WriteLine("Linkfile does not exist. create a new file by adding a link.");
+                Console.WriteLine("Linkfile does not exist. create a new file by adding a link.".Color(ConsoleColor.Red));
             }
         }
 
 
-        //prints all the websites in the selected folder
+        //prints all the websites from the array
         public static void listLinkCollection()
         {
             foreach (Link a in links)
             {
-                Console.WriteLine($"{a.Name} ({a.Description}): {a.Url}");
+                Console.WriteLine($"{a.Name} ({a.Description}): {a.Url.Underlined()}");
             }
         }
 
+        //adds a link to the array
         public static void addLink()
         {
             Console.Write("Link name: ");
@@ -134,6 +139,7 @@ namespace WebLinks
             Console.WriteLine($"Added {link.Name} ({link.Description}).");
 
         }
+        //opens a link from the array with default application
         public static void openLink()
         {
             Console.WriteLine("Which link do you want to open?");
@@ -162,6 +168,7 @@ namespace WebLinks
             }
 
         }
+        //saves array of links to an existing or new textfile
         public static void SaveLinkToFile(string fileName)
         {
             List<string> lines = new List<string>();
@@ -174,13 +181,15 @@ namespace WebLinks
             File.WriteAllLines(main, lines);
         }
 
+        //prints a welcome message
         private static void PrintWelcome()
-        {
-            Console.WriteLine("Hello and welcome to the Links Bookmark Program");
-            Console.WriteLine("that helps you bookmark links to a file.");
-            Console.WriteLine("Write 'help' for help!");
+        {          
+            Console.WriteLine("Hello and welcome to the Links Bookmark Program".Color(ConsoleColor.Yellow));
+            Console.WriteLine("that helps you bookmark links to a file.".Color(ConsoleColor.Yellow));
+            Console.WriteLine("`Yellow|Write´ `Magenta|'help'´ `Yellow|for´ `Yellow|help!´".FormatANSI(ANSIFormatting.None, ANSIFormatting.Blink, ANSIFormatting.None, ANSIFormatting.None));
         }
 
+        //prints a list of executable commands
         private static void WriteTheHelp()
         {
             string[] hstr = {
@@ -189,10 +198,10 @@ namespace WebLinks
                 "list  - list links in file",
                 "open  - open a specific link",
                 "add  - add link to the list",
-                "save  - save link to the file",
+                "save  - save links to the file",
                 "quit  - quit the program"
             };
-            foreach (string h in hstr) Console.WriteLine(h);
+            foreach (string h in hstr) Console.WriteLine(h.Color(ConsoleColor.Green).Italic());
         }
     }
 }
