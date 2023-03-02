@@ -1,5 +1,4 @@
-﻿using static WebLinks.Program;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace WebLinks
 {
@@ -22,8 +21,8 @@ namespace WebLinks
         }
         static void Main(string[] args)
         {
-            
-            
+
+
 
             PrintWelcome();
             string command;
@@ -41,7 +40,7 @@ namespace WebLinks
                 }
                 else if (command == "load file")
                 {
-                    Console.Write("ange filnamn(exempel: Weblink.txt): ");
+                    Console.Write("State filename (example: Weblink.txt): ");
                     string filename = Console.ReadLine();
                     loadFilefromFolder(filename);
                 }
@@ -58,6 +57,13 @@ namespace WebLinks
                     addLink();
 
                 }
+                else if (command == "save")
+                {
+                    Console.Write("State filename to save (example: Weblink.txt): ");
+                    string filename = Console.ReadLine();
+                    SaveLinkToFile(filename);
+
+                }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
@@ -65,14 +71,19 @@ namespace WebLinks
                 }
             } while (command != "quit");
         }
-
-        public static void loadFilefromFolder(string fileName)
-
+        public static string path1(string fileName)
         {
             string workingDirectory = Environment.CurrentDirectory;
             string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            Console.WriteLine(strExeFilePath +@"\"+ fileName);
             string main = strExeFilePath + @"\" + fileName;
+            return main;
+        }
+        //loading a file into system to be processed
+        public static void loadFilefromFolder(string fileName)
+
+        {//nolla array
+            links.Clear();
+            string main = path1(fileName);
             if (File.Exists(main))
             {
                 string[] lines = File.ReadAllLines(main);
@@ -97,10 +108,10 @@ namespace WebLinks
         }
 
 
-
+        //prints all the websites in the selected folder
         public static void listLinkCollection()
         {
-            foreach(Link a in links)
+            foreach (Link a in links)
             {
                 Console.WriteLine($"{a.Name} ({a.Description}): {a.Url}");
             }
@@ -121,8 +132,10 @@ namespace WebLinks
             links.Add(link);
 
             Console.WriteLine($"Added {link.Name} ({link.Description}).");
+
         }
-        public static void openLink() {
+        public static void openLink()
+        {
             Console.WriteLine("Which link do you want to open?");
             Console.WriteLine(links[0].Name);
             for (int i = 0; i < links.Count; i++)
@@ -148,6 +161,17 @@ namespace WebLinks
                 Console.WriteLine("link error!!!");
             }
 
+        }
+        public static void SaveLinkToFile(string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach (Link link in links)
+            {
+                lines.Add($"{link.Name}|{link.Description}|{link.Url}");
+
+            }
+            string main = path1(fileName);
+            File.WriteAllLines(main, lines);
         }
 
 
