@@ -38,7 +38,7 @@ namespace WebLinks
                 {
                     WriteTheHelp();
                 }
-                else if (command == "load file")
+                else if (command == "load")
                 {
                     Console.Write("State filename (example: Weblink.txt): ");
                     string filename = Console.ReadLine();
@@ -174,19 +174,10 @@ namespace WebLinks
             File.WriteAllLines(main, lines);
         }
 
-
-
-
-
-        private static void NotYetImplemented(string command)
-        {
-            Console.WriteLine($"Sorry: '{command}' is not yet implemented");
-        }
-
         private static void PrintWelcome()
         {
-            Console.WriteLine("Hello and welcome to the ... program ...");
-            Console.WriteLine("that does ... something.");
+            Console.WriteLine("Hello and welcome to the Links Bookmark Program");
+            Console.WriteLine("that helps you bookmark links to a file.");
             Console.WriteLine("Write 'help' for help!");
         }
 
@@ -194,8 +185,11 @@ namespace WebLinks
         {
             string[] hstr = {
                 "help  - display this help",
-                "load file  - load all links from a file",
+                "load  - load file containing links",
+                "list  - list links in file",
                 "open  - open a specific link",
+                "add  - add link to the list",
+                "save  - save link to the file",
                 "quit  - quit the program"
             };
             foreach (string h in hstr) Console.WriteLine(h);
