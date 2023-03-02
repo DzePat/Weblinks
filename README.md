@@ -3,7 +3,7 @@ Mainkod-ansvarig - Brian (PrintWelcome, WriteTheHelp, NotYetImplemented
 Githubmästare - Dzedas
 Funktionalitetskodare - Amir
 
--Att göra
+*Att göra
 -Skapa fil med länkar i repository
 -Ladda weblänkar
 -lista (Load) - läsa från fil
