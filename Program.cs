@@ -223,7 +223,7 @@ namespace WebLinks
 ####################Amir / /Brian\ \#####Dzedas/ /#######################
 | | | | | | | | | | | | |\/| | | |\/| | | | | |\/ | | | | | | | | | | | |
 |_|_|_|_|_|_|_|_|_|_|_|_|__|_|_|_|__|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|";
-            Console.WriteLine($"`{Cat}´".FormatANSI(ANSIFormatting.Blink));
+            Console.WriteLine($"{Cat}");
 
         }
         
