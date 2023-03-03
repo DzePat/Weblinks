@@ -11,9 +11,27 @@ namespace WebLinks
         // klass som representerar en länk
         public class Link
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public string Url { get; set; }
+            private string _name;
+
+            public string Name
+            {
+                get { return _name; }
+                set { _name = value; }
+            }
+
+            private string _description;
+
+            public string Description
+            {
+                get { return _description; }
+                set { _description = value; }
+            }
+            private string _url;
+            public string Url
+            {
+                get { return _url; }
+                set { _url = value; }
+            }
 
             public Link(string name, string description, string url)
             {
@@ -183,7 +201,7 @@ namespace WebLinks
 
         //prints a welcome message
         private static void PrintWelcome()
-        {          
+        {
             Console.WriteLine("Hello and welcome to the Links Bookmark Program".Color(ConsoleColor.Yellow));
             Console.WriteLine("that helps you bookmark links to a file.".Color(ConsoleColor.Yellow));
             Console.WriteLine("`Yellow|Write´ `Magenta|'help'´ `Yellow|for´ `Yellow|help!´".FormatANSI(ANSIFormatting.None, ANSIFormatting.Blink, ANSIFormatting.None, ANSIFormatting.None));
