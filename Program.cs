@@ -1,7 +1,7 @@
 ﻿using ANSIConsole;
+using System.ComponentModel;
 using System.Diagnostics;
-
-
+using System.Net.Http.Headers;
 
 namespace WebLinks
 {
@@ -142,31 +142,45 @@ namespace WebLinks
         //opens a link from the array with default application
         public static void openLink()
         {
-            Console.WriteLine("Which link do you want to open?");
-            Console.WriteLine(links[0].Name);
-            for (int i = 0; i < links.Count; i++)
+            if (links.Count > 0)
             {
-                Console.WriteLine($"{i + 1}. {links[i].Name}");
-            }
-            Console.Write("Ange länkens nummer: ");
-            int index = int.Parse(Console.ReadLine()) - 1;
-
-            if (index >= 0 && index < links.Count)
-            {
-                Link link = links[index];
-                Console.WriteLine($"Opening {link.Name} ({link.Description})...");
-                var ps = new ProcessStartInfo(link.Url)
+                Console.WriteLine("Which link do you want to open?");
+                Console.WriteLine(links[0].Name);
+                for (int i = 0; i < links.Count; i++)
                 {
-                    UseShellExecute = true,
-                    Verb = "open"
-                };
-                Process.Start(ps);
+                    Console.WriteLine($"{i + 1}. {links[i].Name}");
+                }
+                Console.Write("Ange länkens nummer: ");
+                int index = int.Parse(Console.ReadLine()) - 1;
+
+                if (index >= 0 && index < links.Count)
+                {
+                    Link link = links[index];
+                    Console.WriteLine($"Opening {link.Name} ({link.Description})...");
+                    try
+                    {
+                        var ps = new ProcessStartInfo(link.Url)
+                        {
+                            UseShellExecute = true,
+                            Verb = "open"
+                        };
+                        Process.Start(ps);
+                    }
+                    catch (Win32Exception)
+                    {
+                        Console.WriteLine("the link is invalid");
+                    }
+                    
+                }
+                else
+                {
+                    Console.WriteLine("link error!!!");
+                }
             }
             else
             {
-                Console.WriteLine("link error!!!");
+                Console.WriteLine("please load a file first before trying to access links".Color(ConsoleColor.Red));
             }
-
         }
         //saves array of links to an existing or new textfile
         public static void SaveLinkToFile(string fileName)
