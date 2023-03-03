@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebLinks
 {
@@ -143,7 +144,9 @@ namespace WebLinks
         //adds a link to the array
         public static void addLink()
         {
-            links.Add(zenity()[0]);
+            Link inputlink = zenity();
+            links.Add(inputlink);
+            Console.WriteLine($"added {inputlink.Name}");
         }
         //opens a link from the array with default application
         public static void openLink()
@@ -241,7 +244,7 @@ namespace WebLinks
             };
             foreach (string h in hstr) Console.WriteLine(h.Color(ConsoleColor.Green).Italic());
         }
-        public static Link[] zenity()
+        public static Link zenity()
         {
             string workingDirectory = Environment.CurrentDirectory;
             string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
@@ -252,39 +255,30 @@ namespace WebLinks
             z.RedirectStandardError = true;
             z.UseShellExecute = false;
 
+            
 
-            using (Process process = Process.Start(z))
-            {
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
+                using (Process process = Process.Start(z))
+                {
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
 
                 // Skriv ut formuläret på konsolen
-                Console.WriteLine(output);
+                //Console.WriteLine(output);
 
                 // Läs indata från användaren från konsolen
-                string link = Console.ReadLine();
+                /*string link = Console.ReadLine();
                 string info = Console.ReadLine();
-                string url = Console.ReadLine();
+                string url = Console.ReadLine();*/
 
-                // Skriv ut den inmatade datan på konsolen
-                Console.WriteLine($"Link: {link}");
-                Console.WriteLine($"Info: {info}");
-                Console.WriteLine($"URL: {url}");
-                Link[] l = new Link[3];
-                l[0].Name = link;
-                l[1].Description = info;
-                l[2].Url = url;
-
-                return l;
+                
+                string[] splits = output.Split("|");
+                    Link input = new Link(splits[0], splits[1], splits[2]);
+                
+                    return input;
+                }
             }
-
-
-           
-
-
-
-            }
-    }
-}
+            
+        }
+ }
 
 
