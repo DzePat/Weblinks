@@ -1,6 +1,7 @@
 ﻿using ANSIConsole;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Net.Http.Headers;
 
 namespace WebLinks
@@ -212,18 +213,19 @@ namespace WebLinks
         }
         public static void cat()
         {
-            String Cat = @"                  
-                      /^--^\     /^--^\     /^--^\
-                      \____/     \____/     \____/
-                     /      \   /      \   /      \
-                    |        | |        | |        |
-                     \__  __/   \__  __/   \__  __/
+            String Cat = 
+@"                                                                        
+                      /^--^\     /^--^\     /^--^\                       
+                      \____/     \____/     \____/                       
+                     /      \   /      \   /      \                      
+                    |        | |        | |        |                     
+                     \__  __/   \__  __/   \__  __/                      
 |^|^|^|^|^|^|^|^|^|^|^|^\ \^|^|^|^/ /^|^|^|^|^\ \^|^|^|^|^|^|^|^|^|^|^|^|
 | | | | | | | | | | | | |\ \| | |/ /| | | | | |\ \| | | | | | | | | | | |
 ####################Amir / /Brian\ \#####Dzedas/ /#######################
 | | | | | | | | | | | | |\/| | | |\/| | | | | |\/ | | | | | | | | | | | |
 |_|_|_|_|_|_|_|_|_|_|_|_|__|_|_|_|__|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|";
-            Console.WriteLine($"{Cat}");
+            Console.WriteLine($"`{Cat}´".Gradient(ANSIString.FromConsoleColor(Console.BackgroundColor), Color.Yellow, Color.Red, Color.Blue, Color.Cyan));
 
         }
         
