@@ -261,7 +261,7 @@ namespace WebLinks
             ProcessStartInfo z = new ProcessStartInfo();
             z.FileName = "zenity.exe";
             z.Arguments = "--forms --title= \"Add a Link\" --text=\"Forms Dialog\" --add-entry=\"Link\" --add-entry=\"Info\" --add-entry=\"URL\"";
-            z.WorkingDirectory = @"C:\Users\dzeda\miniProjekt\WebLinks\winzenity\zenity";
+            z.WorkingDirectory =  strExeFilePath + @"\winzenity\zenity\";
             z.RedirectStandardOutput = true;
             z.RedirectStandardError = true;
             z.UseShellExecute = false;
