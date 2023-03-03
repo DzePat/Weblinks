@@ -143,20 +143,7 @@ namespace WebLinks
         //adds a link to the array
         public static void addLink()
         {
-            Console.Write("Link name: ");
-            string name = Console.ReadLine();
-
-            Console.Write("Link description: ");
-            string description = Console.ReadLine();
-
-            Console.Write("Link URL: ");
-            string url = Console.ReadLine();
-
-            Link link = new Link(name, description, url);
-            links.Add(link);
-
-            Console.WriteLine($"Added {link.Name} ({link.Description}).");
-
+            links.Add(zenity()[0]);
         }
         //opens a link from the array with default application
         public static void openLink()
@@ -254,7 +241,7 @@ namespace WebLinks
             };
             foreach (string h in hstr) Console.WriteLine(h.Color(ConsoleColor.Green).Italic());
         }
-        public static void zenity()
+        public static Link[] zenity()
         {
             string workingDirectory = Environment.CurrentDirectory;
             string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
@@ -283,6 +270,12 @@ namespace WebLinks
                 Console.WriteLine($"Link: {link}");
                 Console.WriteLine($"Info: {info}");
                 Console.WriteLine($"URL: {url}");
+                Link[] l = new Link[3];
+                l[0].Name = link;
+                l[1].Description = info;
+                l[2].Url = url;
+
+                return l;
             }
 
 
