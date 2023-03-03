@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Net.Http.Headers;
 
 namespace WebLinks
 {
@@ -41,7 +40,7 @@ namespace WebLinks
                 Url = url;
             }
         }
-        
+
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -187,7 +186,7 @@ namespace WebLinks
                     {
                         Console.WriteLine("the link is invalid");
                     }
-                    
+
                 }
                 else
                 {
@@ -213,7 +212,7 @@ namespace WebLinks
         }
         public static void cat()
         {
-            String Cat = 
+            String Cat =
 @"                                                                        
                       /^--^\     /^--^\     /^--^\                       
                       \____/     \____/     \____/                       
@@ -228,7 +227,7 @@ namespace WebLinks
             Console.WriteLine($"`{Cat}´".Gradient(ANSIString.FromConsoleColor(Console.BackgroundColor), Color.Yellow, Color.Red, Color.Blue, Color.Cyan));
 
         }
-        
+
         //prints a welcome message
         private static void PrintWelcome()
         {
@@ -251,6 +250,36 @@ namespace WebLinks
                 "quit  - quit the program"
             };
             foreach (string h in hstr) Console.WriteLine(h.Color(ConsoleColor.Green).Italic());
+        }
+        public void zenity()
+        {
+            ProcessStartInfo z = new ProcessStartInfo();
+            z.FileName = "zenity.exe";
+            z.Arguments = "--forms --title= \"Add a Link\" --text=\"Forms Dialog\" --add-entry=\"Link\" --add-entry=\"Info\" --add-entry=\"URL\"";
+            z.WorkingDirectory = @"C:\Program Files (x86)\Zenity\bin\";
+            z.RedirectStandardOutput = true;
+            z.RedirectStandardError = true;
+            z.UseShellExecute = false;
+
+
+            using (Process process = Process.Start(z))
+            {
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                // Skriv ut formuläret på konsolen
+                Console.WriteLine(output);
+
+                // Läs indata från användaren från konsolen
+                string link = Console.ReadLine();
+                string info = Console.ReadLine();
+                string url = Console.ReadLine();
+
+                // Skriv ut den inmatade datan på konsolen
+                Console.WriteLine($"Link: {link}");
+                Console.WriteLine($"Info: {info}");
+                Console.WriteLine($"URL: {url}");
+            }
         }
     }
 }
