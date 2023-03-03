@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WebLinks
 {
@@ -159,7 +158,7 @@ namespace WebLinks
                 {
                     Console.WriteLine($"{i + 1}. {links[i].Name}");
                 }
-                Console.Write("Ange länkens nummer: ");
+                Console.Write("State number: ");
                 int index = int.Parse(Console.ReadLine()) - 1;
 
                 if (index >= 0 && index < links.Count)
@@ -255,30 +254,20 @@ namespace WebLinks
             z.RedirectStandardError = true;
             z.UseShellExecute = false;
 
-            
 
-                using (Process process = Process.Start(z))
-                {
-                    string output = process.StandardOutput.ReadToEnd();
-                    string error = process.StandardError.ReadToEnd();
 
-                // Skriv ut formuläret på konsolen
-                //Console.WriteLine(output);
-
-                // Läs indata från användaren från konsolen
-                /*string link = Console.ReadLine();
-                string info = Console.ReadLine();
-                string url = Console.ReadLine();*/
-
-                
+            using (Process process = Process.Start(z))
+            {
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
                 string[] splits = output.Split("|");
-                    Link input = new Link(splits[0], splits[1], splits[2]);
-                
-                    return input;
-                }
-         }
-        
+                Link input = new Link(splits[0], splits[1], splits[2]);
+
+                return input;
+            }
         }
- }
+
+    }
+}
 
 
