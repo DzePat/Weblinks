@@ -40,11 +40,9 @@ namespace WebLinks
                 Url = url;
             }
         }
+        
         static void Main(string[] args)
         {
-
-
-
             PrintWelcome();
             string command;
             do
@@ -212,10 +210,27 @@ namespace WebLinks
             string main = path1(fileName);
             File.WriteAllLines(main, lines);
         }
+        public static void cat()
+        {
+            String Cat = @"                  
+                      /^--^\     /^--^\     /^--^\
+                      \____/     \____/     \____/
+                     /      \   /      \   /      \
+                    |        | |        | |        |
+                     \__  __/   \__  __/   \__  __/
+|^|^|^|^|^|^|^|^|^|^|^|^\ \^|^|^|^/ /^|^|^|^|^\ \^|^|^|^|^|^|^|^|^|^|^|^|
+| | | | | | | | | | | | |\ \| | |/ /| | | | | |\ \| | | | | | | | | | | |
+####################Amir / /Brian\ \#####Dzedas/ /#######################
+| | | | | | | | | | | | |\/| | | |\/| | | | | |\/ | | | | | | | | | | | |
+|_|_|_|_|_|_|_|_|_|_|_|_|__|_|_|_|__|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|";
+            Console.WriteLine($"`{Cat}´".FormatANSI(ANSIFormatting.Blink));
 
+        }
+        
         //prints a welcome message
         private static void PrintWelcome()
         {
+            cat();
             Console.WriteLine("Hello and welcome to the Links Bookmark Program".Color(ConsoleColor.Yellow));
             Console.WriteLine("that helps you bookmark links to a file.".Color(ConsoleColor.Yellow));
             Console.WriteLine("`Yellow|Write´ `Magenta|'help'´ `Yellow|for´ `Yellow|help!´".FormatANSI(ANSIFormatting.None, ANSIFormatting.Blink, ANSIFormatting.None, ANSIFormatting.None));
