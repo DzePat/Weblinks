@@ -78,9 +78,9 @@ namespace WebLinks
                 }
                 else if (command == "save")
                 {
-                    Console.Write("State filename to save (example: Weblink.txt): ");
-                    string filename = Console.ReadLine();
-                    SaveLinkToFile(filename);
+                    /*Console.Write("State filename to save (example: Weblink.txt): ");
+                    string filename = Console.ReadLine();*/
+                    SaveLinkToFile();
                 }
                 else if (command == "z")
                 {
@@ -191,7 +191,7 @@ namespace WebLinks
             }
         }
         //saves array of links to an existing or new textfile
-        public static void SaveLinkToFile(string fileName)
+        public static void SaveLinkToFile()
         {
             List<string> lines = new List<string>();
             foreach (Link link in links)
@@ -199,8 +199,11 @@ namespace WebLinks
                 lines.Add($"{link.Name}|{link.Description}|{link.Url}");
 
             }
-            string main = path1(fileName);
-            File.WriteAllLines(main, lines);
+            
+            string fileName = zenitysavetofile();
+            fileName = fileName.Trim();
+            Console.WriteLine(fileName); 
+            File.WriteAllLines(fileName, lines);
         }
         public static void cat()
         {
@@ -264,6 +267,27 @@ namespace WebLinks
                 Link input = new Link(splits[0], splits[1], splits[2]);
 
                 return input;
+            }
+        }
+        public static string zenitysavetofile()
+        {
+            string workingDirectory = Environment.CurrentDirectory;
+            string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            ProcessStartInfo z = new ProcessStartInfo();
+            z.FileName = strExeFilePath + @"\winzenity\zenity\" + "zenity.exe";
+            z.Arguments = "--file-selection --title=";
+            z.RedirectStandardOutput = true;
+            z.RedirectStandardError = true;
+            z.UseShellExecute = false;
+
+
+
+            using (Process process = Process.Start(z))
+            {
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                return output;
             }
         }
 
