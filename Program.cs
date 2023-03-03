@@ -259,9 +259,8 @@ namespace WebLinks
             string workingDirectory = Environment.CurrentDirectory;
             string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             ProcessStartInfo z = new ProcessStartInfo();
-            z.FileName = "zenity.exe";
+            z.FileName = strExeFilePath + @"\winzenity\zenity\" + "zenity.exe";
             z.Arguments = "--forms --title= \"Add a Link\" --text=\"Forms Dialog\" --add-entry=\"Link\" --add-entry=\"Info\" --add-entry=\"URL\"";
-            z.WorkingDirectory = strExeFilePath + @"\winzenity\zenity\";
             z.RedirectStandardOutput = true;
             z.RedirectStandardError = true;
             z.UseShellExecute = false;
