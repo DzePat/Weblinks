@@ -59,9 +59,9 @@ namespace WebLinks
                 }
                 else if (command == "load")
                 {
-                    Console.Write("State filename (example: Weblink.txt): ");
-                    string filename = Console.ReadLine();
-                    loadFilefromFolder(filename);
+                    /*Console.Write("State filename (example: Weblink.txt): ");
+                    string filename = Console.ReadLine();*/
+                    loadFilefromFolder();
                 }
                 else if (command == "list")
                 {
@@ -102,11 +102,12 @@ namespace WebLinks
             return main;
         }
         //gets a file from the path and reads it into a string line by line
-        public static void loadFilefromFolder(string fileName)
+        public static void loadFilefromFolder()
 
         {//nolla array
             links.Clear();
-            string main = path1(fileName);
+            string main = zenitysavetofile();
+            main = main.Trim();
             if (File.Exists(main))
             {
                 string[] lines = File.ReadAllLines(main);
