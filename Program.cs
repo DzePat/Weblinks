@@ -81,7 +81,10 @@ namespace WebLinks
                     Console.Write("State filename to save (example: Weblink.txt): ");
                     string filename = Console.ReadLine();
                     SaveLinkToFile(filename);
-
+                }
+                else if (command == "z")
+                {
+                    zenity();
                 }
                 else
                 {
@@ -251,19 +254,21 @@ namespace WebLinks
             };
             foreach (string h in hstr) Console.WriteLine(h.Color(ConsoleColor.Green).Italic());
         }
-        public void zenity()
+        public static void zenity()
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             ProcessStartInfo z = new ProcessStartInfo();
             z.FileName = "zenity.exe";
             z.Arguments = "--forms --title= \"Add a Link\" --text=\"Forms Dialog\" --add-entry=\"Link\" --add-entry=\"Info\" --add-entry=\"URL\"";
-            z.WorkingDirectory = @"C:\Program Files (x86)\Zenity\bin\";
+            z.WorkingDirectory = @"C:\Users\dzeda\miniProjekt\WebLinks\winzenity\zenity";
             z.RedirectStandardOutput = true;
             z.RedirectStandardError = true;
             z.UseShellExecute = false;
 
 
             using (Process process = Process.Start(z))
-            {
+            {   
                 string output = process.StandardOutput.ReadToEnd();
                 string error = process.StandardError.ReadToEnd();
 
