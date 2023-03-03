@@ -1,9 +1,4 @@
-﻿using ANSIConsole;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-
-namespace WebLinks
+﻿namespace WebLinks
 {
     internal class Program
     {
@@ -81,7 +76,10 @@ namespace WebLinks
                     Console.Write("State filename to save (example: Weblink.txt): ");
                     string filename = Console.ReadLine();
                     SaveLinkToFile(filename);
-
+                }
+                else if (command == "z")
+                {
+                    zenity();
                 }
                 else
                 {
@@ -251,12 +249,14 @@ namespace WebLinks
             };
             foreach (string h in hstr) Console.WriteLine(h.Color(ConsoleColor.Green).Italic());
         }
-        public void zenity()
+        public static void zenity()
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string strExeFilePath = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             ProcessStartInfo z = new ProcessStartInfo();
             z.FileName = "zenity.exe";
             z.Arguments = "--forms --title= \"Add a Link\" --text=\"Forms Dialog\" --add-entry=\"Link\" --add-entry=\"Info\" --add-entry=\"URL\"";
-            z.WorkingDirectory = @"C:\Users\Amir\source\repos\Weblinks\winzenity\zenity";
+            z.WorkingDirectory = strExeFilePath + @"\winzenity\zenity\";
             z.RedirectStandardOutput = true;
             z.RedirectStandardError = true;
             z.UseShellExecute = false;
